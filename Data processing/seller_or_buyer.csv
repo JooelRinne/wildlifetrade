@@ -1,0 +1,17 @@
+Seller,Buyer,Other
+seller,buyer,not for sale
+selling,suche,hobbyist
+biete,wanted,hobbyist
+for sale,looking for,hobbyist
+offer,seek,hobbyist
+gebe,trade for,hobbyist
+Verkaufe,trades for,hobbyist
+Verkauf,buscand,hobbyist
+Gebe,buyer,hobbyist
+bite,buyer,hobbyist
+€,buyer,hobbyist
+\$\d+,buyer,hobbyist
+\$,buyer,hobbyist
+ready to go,buyer,hobbyist
+I have,buyer,hobbyist
+guaranteed,buyer,hobbyist
