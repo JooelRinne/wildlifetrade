@@ -55,7 +55,7 @@ Steps
 7. Edit the "filteringaccuracy.py" script again and make sure that this time the variable "data_selection" is False and "accuracy_assessment" is True.
 8. The script produces accuracy_assessment reports including accuracies and omission and commission errors for each six reviewed data sets.
 
-................................................................................................................................................................................................................
+-----
 
 2. Processing accuracy
 
