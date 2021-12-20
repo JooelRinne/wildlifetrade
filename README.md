@@ -50,8 +50,8 @@ Steps
 2. Edit the "filteringaccuracy.py" script and make sure that the variable "data_selection" is True and "accuracy_assessment" is False.
 3. Select the sample size of your assessement data (number of data entries) by setting the "sample_size" variable to for example 100
 4. Run the "filteringaccuracy.py" script. Six .csv files are created, two of each website type. The files have as many randomly selected data entries from the database as defined by the "sample_size" variable.
-5. Review the .csv files manually. Insert new column "filtered" to the files and mark the entries that should be filtered (include species you are searching) with "y" and the entries that should be filtered with "n" as done in the example .csv files, e.g. "forum_revieweddata.csv".  
-6. Name the reviewed .csv files same way as the example files in the "Accuracy assessment" folder
+5. Review the .csv files manually. Insert new column "filtered" to the files and mark the entries that should be filtered (include species you are searching) with "y" and the entries that should be filtered with "n" as done in the example .csv file  "forum_revieweddata.csv".  
+6. Name the reviewed .csv files same way as they are refered in the "filteringaccuracy.py" script
 7. Edit the "filteringaccuracy.py" script again and make sure that this time the variable "data_selection" is False and "accuracy_assessment" is True.
 8. The script produces accuracy_assessment reports including accuracies and omission and commission errors for each six reviewed data sets.
 
@@ -62,12 +62,12 @@ Steps
 "processingaccuracy.py" creates accuracy assessment reports of the rest of the processing phase done by the rest of the scripts. 
 
 Steps
-1. Make sure that the resulting .csv file from the "matches.py" script, namely the "matches.csv" file is in the same folder as the "processingaccuracy.py" script
+1. Make sure that the resulting .csv file from the "matches.py" script, namely the "matches.csv" is in the same folder as the "processingaccuracy.py" script
 2. Edit the "processingaccuracy.py" script and make sure that the variable "data_selection" is True and "accuracy_assessment" is False.
 3. Select the sample size of your assessement data (number of data entries) by setting the "sample_size" variable to for example 100
 4. Run the "processingaccuracy.py" script. Two .csv files are created, validation and test data sets. The files have as many randomly selected data entries from the database as defined by the "sample_size" variable.
-5. Review the .csv files manually. Review the generated .csv files manually by determining the right data fields (Species_r, Quantity_r, Price_r, Currency_r, Location_r and Intent_r) as done in the example .csv files, e.g. "processing_validationdata_reviewed". Leave the field empty if the information is not found from the data entry. If the whole data entry should not be included write "NO" to each of the reviewed columns "ending with _r"
-6. Name the reviewed .csv files same way as the example files in the "Accuracy assessment" folder
+5. Review the .csv files manually. Review the generated .csv files manually by determining the right data fields (Species_r, Quantity_r, Price_r, Currency_r, Location_r and Intent_r) as done in the example .csv file "processing_validationdata_reviewed". Leave the field empty if the information is not found from the data entry. If the whole data entry should not be included write "NO" to each of the reviewed columns "ending with _r"
+6. Name the reviewed .csv files same way as they are refered in the "processingaccuracy.py" script
 7. Edit the "processingaccuracy.py" script again and make sure that this time the variable "data_selection" is False and "accuracy_assessment" is True.
 8. The script produces accuracy_assessment reports including accuracies of each data field reviewed. 
 
