@@ -9,9 +9,8 @@ from itemadapter import ItemAdapter
 import sqlite3
 
 class ScraperPipeline(object):
-    test = True
-    # db = "reptilesales.db"
-    db = "reptilesales3.db"
+    test = False
+    db = "reptilesales.db"
 
     if test:
         tb = "test_tb"

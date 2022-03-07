@@ -6,37 +6,40 @@ import sqlite3
 from sqlalchemy import create_engine
 
 
-# load the data
-# db = 'reptilesales2.db'
-# data = sqlite3.connect(db)
-# raw_data = pd.read_sql_query('SELECT * FROM reptiles_tb', data)
-
-data_selection = False
-accuracy_assessment = True
+# Choose which functions the script will run by writing True or False after the variable
+# Data selection randomly sleects the data entries from raw data to data sets 
+# sample_size determines how many data entries are chosen per data set
+data_selection = True
 sample_size = 100
 
+# Accuracy assessments compares a reviewed data sets to data processed by scripts 
+accuracy_assessment = True
+
 if data_selection:
+    # Loads data
     raw_data = pd.read_csv('matches.csv')
 
-    processing_validationdata = raw_data.sample(n = sample_size)
+    # Selects training and validation data sets
+    processing_trainingdata = raw_data.sample(n = sample_size)
     processing_testdata = raw_data.sample(n = sample_size)
 
-    processing_validationdata .to_csv('processing_validationdata .csv')
+    # Saves created data sets as .csv files
+    processing_trainingdata .to_csv('processing_validationdata .csv')
     processing_testdata.to_csv('processing_testdata.csv')
 
-
+# Calculates overall accuracies for each data field for processed data from training data and test data sets
 if accuracy_assessment:
-    # Read reviewed validation and test data sets
-    validationdata_r = pd.read_csv('processing_validationdata_reviewed.csv')
+    # Reads reviewed training and test data sets
+    trainingdata_r = pd.read_csv('processing_trainingdata_reviewed.csv')
     testdata_r = pd.read_csv('processing_testdata_reviewed.csv')
 
-    # Read the filtered data by filtering algorithm
-    processed_df = pd.read_csv('locationsdone.csv')
+    # Reads the data processed by the processing algorithms
+    processed_df = pd.read_csv('results.csv')
     processed_df['original_datarow'] = processed_df['original_datarow'].astype(str)
     # Calculate overall accuracies and omission and comission errors for filtered data from validation data and test datasets
 
-    # Select the validation or test data sets used as reference 
-    reference_datasets = [validationdata_r, testdata_r]
+    # Select the training or test data sets used as reference 
+    reference_datasets = [trainingdata_r, testdata_r]
 
 
     for dataset in reference_datasets:
@@ -228,26 +231,3 @@ if accuracy_assessment:
 
         df.to_csv(str(number) + '_processingaccuracyreport.csv')
         number += 1
-
-# for index, row in websitetypes.iterrows():
-#     df['websitetype'] = df.apply(lambda x: row['type'] if re.findall(row['abbreviation'], x['source'], re.IGNORECASE | re.MULTILINE | re.DOTALL) else x['websitetype'], axis=1) 
-#     break
-
-# # for index, row in df.iterrows():
-# #     for i, website in websitetypes.iterrows():
-# #         source = str(df['source'])
-# #         abbreviation = str(website['abbreviation'])
-
-# #         if source.find(abbreviation) != -1:
-# #             row['websitetype'] = website['type']
-
-
-
-
-
-# df['original_datarow'] = np.arange(len(df))
-
-# engine = create_engine('sqlite://', echo=False)
-# df.to_sql('reptilesales', con=engine)
-# df.to_csv('database.csv')
-# print(df.head())

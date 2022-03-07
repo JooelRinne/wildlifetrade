@@ -6,6 +6,8 @@ from numpy.core.numeric import True_
 import pandas as pd
 import re
 import spacy
+from forex_python.converter import CurrencyRates
+import datetime
 
 
 # Defines quantity function
@@ -42,7 +44,8 @@ currency_symbols = currency_list.Symbol.to_list()
 df['Quantity'] = [[]] * df.shape[0]
 df['Quantity_found_from'] = [[]] * df.shape[0]
 df['Price'] = [[]] * df.shape[0]
-df['Currency'] = [[]] * df.shape[0] 
+df['Currency'] = [[]] * df.shape[0]
+df['Price_euro'] = [[]] * df.shape[0] 
 df['Intent'] = [[]] * df.shape[0]
 df['Intent_found_from'] = [[]] * df.shape[0]
 df['Intent_match'] = [[]] * df.shape[0]
@@ -86,12 +89,71 @@ for index, row in df.iterrows():
         # Finds if currency any currency symbol is found from the df['price'] column
         currency = [symbol for symbol in currency_symbols if(str(symbol) in price_cell_str)]
 
-        # If currency symbol is found saves the corresponding currency code to df['Currency'] colu,m
+        # If currency symbol is found saves the corresponding currency code to df['Currency'] column
         if len(currency) > 0:
             currency_symb = currency[0]
             currency_code = currency_list.loc[currency_list['Symbol'] == currency_symb, 'Code'].iloc[0]
             df.loc[index, 'Currency'] = currency_code
-    
+
+            # If timestamp is found finds values for year, month and day and then fetches the right rate from forex from that day, converts price to euros and stores to df['Price_euro'] column
+            timestamp_cell = df.loc[index, 'timestamp']
+            print(timestamp_cell)
+            year = re.findall(r'.*([1-3][0,9][0-9]{2})', timestamp_cell)
+            if year: 
+                year = year[0]
+            if not year:
+                year = re.findall(r'.*([.][0,1,2][0-9])', timestamp_cell)
+                if year:
+                    year = str(year[0]).replace('.', '20') 
+            print(year)
+
+            month = re.findall(r'.*([.][0,1][0-9][.])', timestamp_cell)
+            if month:
+                month = str(month[0]).replace('.','')
+
+            if not month:
+                month = re.findall(r'.*([" "][1-9]{1,2}[[/])', timestamp_cell)
+                if month:
+                    month = str(month[0]).replace('/','')
+
+            if not month:
+                months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+                months_regexp = '|'.join(months)
+                month = re.findall(months_regexp, timestamp_cell)
+                if month:
+                    month = months.index(month[0]) + 1
+            
+            day = re.findall(r'.*([" "][0-9]{1,2}[.])', timestamp_cell)
+            
+            if day: 
+                day = str(day[0]).replace('.','')
+
+            if not day:
+                day = re.findall(r'.*([" "][0-9]{1,2}[,])', timestamp_cell)
+
+                if day: 
+                    day = str(day[0]).replace(',','')
+            if not day:
+                day = re.findall(r'.*([/][0-9]{1,2}[/])', timestamp_cell)
+
+                if day: 
+                    day = str(day[0]).replace('/','')
+
+            print(month)
+            print(day)
+            if year and month and day: 
+                dt = datetime.datetime(int(year), int(month), int(day))
+            elif year and month:
+                dt = datetime.datetime(int(year), int(month), 1)
+            elif year:
+                dt = datetime.datetime(int(year), 1, 1)
+            else:
+                acquired = df.loc[index, 'acquired'].split('-')
+                dt = datetime.datetime(int(acquired[0]), int(acquired[1]), int(acquired[2]))
+            
+            
+            df.loc[index, 'Price_euro'] = float(df.loc[index, 'Price']) * CurrencyRates().get_rate(currency_code, 'EUR', dt)
+        
     intent_found = False
     # Columns from which advertisement's intent will be searched from
     intent_columns = ['intent', 'reptile', 'description']
@@ -104,10 +166,6 @@ for index, row in df.iterrows():
                     if not intent_found:
                         intent = re.findall(str(r[col]), str(row[search_column]), re.IGNORECASE)
                         if intent != '[]' and intent:
-                            # print('col: ' + col)
-                            # print('r[col]: ' + r[col])
-                            # print('row[search_column]): ' + row[search_column])
-                            # print('search_column: ' + search_column)
                             df.loc[index, 'Intent'] = col
                             df.loc[index, 'Intent_found_from'] = search_column
                             df.loc[index, 'Intent_match'] = str(r[col])
