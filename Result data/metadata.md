@@ -10,6 +10,6 @@ Data field explanations:
 **Currency:** Currency of the price  
 **Price_euro:** Price converted to euros based on the rate of the date the advertisement was posted  
 **Intent:** Intent of the advertiser; selling, buying, other  
-**Seller_id:** Seller id if seller name or nickname was available in the advertisement  
+**Seller_id:** Seller identification based on seller name or nickname  
 **lat:** Latitude coordinate of the advertisement location (country level accuracy)  
 **lon:** Longitude coordinate of the advertisement location (country level accuracy)  
