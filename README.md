@@ -9,7 +9,7 @@ Steps
 1. Go to website: https://docs.scrapy.org/en/latest/intro/install.html
 2. Follow the installation and set up insctuctions 
 3. After the ScraPy framework is set up, replace the spider Python file in "spiders" folder with the "scraper.py" Python file in "Data collection/spiders"
-4. Replace files "items.py", "middlewares.py", "pipelines,py" and "settings.py" with in your ScraPy framework's "scraper" folder with the same files from "Data collection"
+4. Replace files "items.py", "middlewares.py", "pipelines,py" and "settings.py" in your ScraPy framework's "scraper" folder with the same files from "Data collection"
 5. Add a folder named "config" to your Scrapy framework's "scraper" folder
 6. Add "config.py" file from "Data collection" to your Scrapy framework's newely generated "scraper/config" folder
 7. Fill the "config.py" file with CSS-selectors, links and other information based on the website you want to scrape
@@ -71,4 +71,4 @@ Steps
 7. Edit the "processingaccuracy.py" script again and make sure that this time the variable "data_selection" is False and "accuracy_assessment" is True.
 8. The script produces accuracy_assessment reports including accuracies of each data field reviewed. 
 
-When questions arise mail me at: jooelri@gmail.com and I will try to help.
+
