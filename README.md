@@ -1,5 +1,5 @@
 # Online wildlife trade data collection and processing tool
-Tool for scraping websites trading wildlife species and processing the scraped data. The tool was used to collect and process the data used in my Master's Thesis: Mapping online pet trade in endemic reptile species of the Lesser Antilles using automated data collection and processing 
+Tool for scraping websites trading wildlife species and processing the scraped data.
 
 ## 1. Data collection
 
