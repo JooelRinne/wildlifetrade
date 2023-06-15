@@ -3,19 +3,23 @@ Tool for scraping websites trading wildlife species and processing the scraped d
 
 ## 1. Data collection
 
-The data collection from a website is done using web-crawling framework ScraPy version 2.4.1. Before using the Wildlife trade data collector user should familiarise themself with ScraPy and web scraping using CSS-selectors in general.
+The data collection from a website is done using web-crawling framework ScraPy version 2.4.1. Before using the Wildlife trade data collector user should familiarise themself with Python annd ScraPy and web scraping using CSS-selectors in general. We suggest using virtual environment, such as Conda, to ensure that your project has all the required dependencies and to avoid conflicts between other Python projects.
 
 Steps
-1. Go to website: https://docs.scrapy.org/en/latest/intro/install.html
-2. Follow the installation and set up insctuctions 
-3. After the ScraPy framework is set up, replace the spider Python file in "spiders" folder with the "scraper.py" Python file in "Data collection/spiders"
-4. Replace files "items.py", "middlewares.py", "pipelines,py" and "settings.py" in your ScraPy framework's "scraper" folder with the same files from "Data collection"
-5. Add a folder named "config" to your Scrapy framework's "scraper" folder
-6. Add "config.py" file from "Data collection" to your Scrapy framework's newely generated "scraper/config" folder
-7. Fill the "config.py" file with CSS-selectors, links and other information based on the website you want to scrape
-8. Run the scraper in terminal with "scrapy crawl scraper.py" command
-9. If everything is set up correctly, the scraped information is stored in a SQLite database saved to your ScraPy Framework folder
-10. A new website can be scraped by removing the previous websites config file from the "config" folder and replacing it wit the config file of the next website
+1. Start a new virtual environment, using a Python version 3.6 or higher
+   Conda:
+   '''
+   conda create env --name myenv python=3.6
+   '''
+3. Follow the installation and set up insctuctions 
+4. After the ScraPy framework is set up, replace the spider Python file in "spiders" folder with the "scraper.py" Python file in "Data collection/spiders"
+5. Replace files "items.py", "middlewares.py", "pipelines,py" and "settings.py" in your ScraPy framework's "scraper" folder with the same files from "Data collection"
+6. Add a folder named "config" to your Scrapy framework's "scraper" folder
+7. Add "config.py" file from "Data collection" to your Scrapy framework's newely generated "scraper/config" folder
+8. Fill the "config.py" file with CSS-selectors, links and other information based on the website you want to scrape
+9. Run the scraper in terminal with "scrapy crawl scraper.py" command
+10. If everything is set up correctly, the scraped information is stored in a SQLite database saved to your ScraPy Framework folder
+11. A new website can be scraped by removing the previous websites config file from the "config" folder and replacing it wit the config file of the next website
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
