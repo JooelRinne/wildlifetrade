@@ -1,7 +1,9 @@
 # Online wildlife trade data collection and processing tool
 Tool for scraping websites trading wildlife species and processing the scraped data.
 
-## 1. Data collection
+
+
+## 1. Preparation
 
 The data collection from a website is done using web-crawling framework ScraPy version 2.4.1. Before using the Wildlife trade data collector user should familiarise themself with Python annd ScraPy and web scraping using CSS-selectors in general. We suggest using virtual environment, such as Conda, to ensure that your project has all the required dependencies and to avoid conflicts between other Python projects.
 
@@ -18,6 +20,12 @@ Steps
    ```ruby
    git clone https://github.com/JooelRinne/wildlifetrade.git
    ```
+4. Install the required dependencies
+   ```ruby
+   pip install requirements.txt
+   ```
+   
+## 2. Data collection
 5. Follow the installation and set up insctuctions 
 6. After the ScraPy framework is set up, replace the spider Python file in "spiders" folder with the "scraper.py" Python file in "Data collection/spiders"
 7. Replace files "items.py", "middlewares.py", "pipelines,py" and "settings.py" in your ScraPy framework's "scraper" folder with the same files from "Data collection"
@@ -30,7 +38,7 @@ Steps
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## 2. Data processing
+## 3. Data processing
 
 The data processing filters data enries from a data set that include keywords listed in a seperate file. Then it extracts information from the selected data entries
 
@@ -48,7 +56,7 @@ Steps
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## 3. Accuracy assessment
+## 4. Accuracy assessment
 
 The accuracy of the data procssing is assessed with two scripts "filteringaccuracy.py" and "processingaccuracy".
 
