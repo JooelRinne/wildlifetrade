@@ -5,12 +5,12 @@ Tool for scraping websites trading wildlife species and processing the scraped d
 
 ## 1. Preparation
 
-The data collection from a website is done using web-crawling framework ScraPy version 2.4.1. Before using the Wildlife trade data collector user should familiarise themself with Python annd ScraPy and web scraping using CSS-selectors in general. We suggest using virtual environment, such as Conda, to ensure that your project has all the required dependencies and to avoid conflicts between other Python projects.
+The data collection from a website is done using web-crawling framework ScraPy. Before using the Wildlife trade data collector user should familiarise themself with Python annd ScraPy and web scraping using CSS-selectors in general. We suggest using virtual environment, such as Conda, to ensure that your project has all the required dependencies and to avoid conflicts between other Python projects. This code is tested using Python version 3.11.3 and ScraPy version 2.9.0.
 
 Steps
-1. Create a new conda virtual environment, using a Python version 3.6 or higher. Replace 'myenv' with the name of your choice.
+1. Create a new conda virtual environment using a supported Python 3 version. Replace 'myenv' with the name of your choice.
    ```ruby
-   conda create --name myenv python=3.6
+   conda create --name myenv python=3
    ```
 2. Activate the environment
    ```ruby
