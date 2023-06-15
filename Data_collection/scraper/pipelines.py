@@ -11,13 +11,16 @@ import sqlite3
 class ScraperPipeline(object):
     # Choose if you want to use test table or the actual table by changing the test variable to False/True
     test = False
+    # Choose the name of the database
     db = "wildlifetrade.db"
 
     if test:
+        # Choose the name of the test table
         tb = "test_tb"
         # If the table does not exist use True, else use False
         new_table = True   
     else:
+        # Choose the name of the table
         tb = "reptiles_tb"
         # If the table does not exist use True, else use False
         new_table = True
