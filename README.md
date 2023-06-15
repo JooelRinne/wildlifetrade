@@ -10,15 +10,23 @@ Steps
    ```ruby
    conda create --name myenv python=3.6
    ```
-4. Follow the installation and set up insctuctions 
-5. After the ScraPy framework is set up, replace the spider Python file in "spiders" folder with the "scraper.py" Python file in "Data collection/spiders"
-6. Replace files "items.py", "middlewares.py", "pipelines,py" and "settings.py" in your ScraPy framework's "scraper" folder with the same files from "Data collection"
-7. Add a folder named "config" to your Scrapy framework's "scraper" folder
-8. Add "config.py" file from "Data collection" to your Scrapy framework's newely generated "scraper/config" folder
-9. Fill the "config.py" file with CSS-selectors, links and other information based on the website you want to scrape
-10. Run the scraper in terminal with "scrapy crawl scraper.py" command
-11. If everything is set up correctly, the scraped information is stored in a SQLite database saved to your ScraPy Framework folder
-12. A new website can be scraped by removing the previous websites config file from the "config" folder and replacing it wit the config file of the next website
+2. Activate the environment
+   ```ruby
+   conda activate myenv
+   ```
+3. Copy the code to your personal drive to a location of your choice. Using git:
+   ```ruby
+   conda create --name myenv python=3.6
+   ```
+5. Follow the installation and set up insctuctions 
+6. After the ScraPy framework is set up, replace the spider Python file in "spiders" folder with the "scraper.py" Python file in "Data collection/spiders"
+7. Replace files "items.py", "middlewares.py", "pipelines,py" and "settings.py" in your ScraPy framework's "scraper" folder with the same files from "Data collection"
+8. Add a folder named "config" to your Scrapy framework's "scraper" folder
+9. Add "config.py" file from "Data collection" to your Scrapy framework's newely generated "scraper/config" folder
+10. Fill the "config.py" file with CSS-selectors, links and other information based on the website you want to scrape
+11. Run the scraper in terminal with "scrapy crawl scraper.py" command
+12. If everything is set up correctly, the scraped information is stored in a SQLite database saved to your ScraPy Framework folder
+13. A new website can be scraped by removing the previous websites config file from the "config" folder and replacing it wit the config file of the next website
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
