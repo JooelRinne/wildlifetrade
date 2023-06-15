@@ -20,6 +20,10 @@ Steps
    ```ruby
    git clone https://github.com/JooelRinne/wildlifetrade.git
    ```
+4. Navigate to the "wildlifetrade" folder you just copied
+      ```ruby
+   cd wildlifetrade
+   ```
 4. Install the required dependencies
    ```ruby
    pip install requirements.txt
