@@ -26,7 +26,7 @@ Steps
    ```
 4. Install the required dependencies
    ```ruby
-   pip install requirements.txt
+   pip install -r requirements.txt
    ```
    
 ## 2. Data collection
