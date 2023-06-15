@@ -8,7 +8,7 @@ The data collection from a website is done using web-crawling framework ScraPy v
 Steps
 1. Start a new virtual environment, using a Python version 3.6 or higher
    Conda:
-   ```
+   ```ruby
    conda create env --name myenv python=3.6
    ```
 3. Follow the installation and set up insctuctions 
