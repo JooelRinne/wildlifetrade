@@ -16,7 +16,7 @@ Steps
    ```
 3. Copy the code to your personal drive to a location of your choice. Using git:
    ```ruby
-   conda create --name myenv python=3.6
+   git clone https://github.com/JooelRinne/wildlifetrade.git
    ```
 5. Follow the installation and set up insctuctions 
 6. After the ScraPy framework is set up, replace the spider Python file in "spiders" folder with the "scraper.py" Python file in "Data collection/spiders"
