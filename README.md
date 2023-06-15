@@ -32,7 +32,7 @@ Steps
 ## 2. Data collection
 1. Navigate to the "wildlifetrade/Data_collection/scraper/config" directory on your drive
 2. Open the "config.py" file and fill the variables in the file with CSS-selectors, links and other information based on the website you want to scrape. Follow the annotations in the file.
-3. Navigate to the "wildlifetrade/Data_collection" in terminal and run the script with
+3. Navigate to the "wildlifetrade/Data_collection" directory in terminal and run the script with
    ```ruby
    scrapy crawl scraper
    ```
