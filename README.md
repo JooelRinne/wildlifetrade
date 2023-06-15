@@ -5,10 +5,10 @@ Tool for scraping websites trading wildlife species and processing the scraped d
 
 ## 1. Preparation
 
-The data collection from a website is done using web-crawling framework ScraPy. Before using the Wildlife trade data collector user should familiarise themself with Python annd ScraPy and web scraping using CSS-selectors in general. We suggest using virtual environment, such as Conda, to ensure that your project has all the required dependencies and to avoid conflicts between other Python projects. This code is tested using Python version 3.11.3 and ScraPy version 2.9.0.
+The data collection from a website is done using web-crawling framework ScraPy. Before using the Wildlife trade data collector user should familiarise themself with Python annd ScraPy and web scraping using CSS-selectors in general. We suggest using virtual environment, such as Conda, to ensure that your project has all the required dependencies and to avoid conflicts between other Python projects. This code is last tested using Python version 3.11.3 and ScraPy version 2.9.0 on Windows and Ubuntu.
 
 Steps
-1. Create a new conda virtual environment using a supported Python 3 version. Replace 'myenv' with the name of your choice.
+1. Create a new conda virtual environment using a supported Python 3 version. Replace "myenv" with the name of your choice.
    ```ruby
    conda create --name myenv python=3
    ```
@@ -26,15 +26,17 @@ Steps
    ```
    
 ## 2. Data collection
-5. Follow the installation and set up insctuctions 
-6. After the ScraPy framework is set up, replace the spider Python file in "spiders" folder with the "scraper.py" Python file in "Data collection/spiders"
-7. Replace files "items.py", "middlewares.py", "pipelines,py" and "settings.py" in your ScraPy framework's "scraper" folder with the same files from "Data collection"
-8. Add a folder named "config" to your Scrapy framework's "scraper" folder
-9. Add "config.py" file from "Data collection" to your Scrapy framework's newely generated "scraper/config" folder
-10. Fill the "config.py" file with CSS-selectors, links and other information based on the website you want to scrape
-11. Run the scraper in terminal with "scrapy crawl scraper.py" command
-12. If everything is set up correctly, the scraped information is stored in a SQLite database saved to your ScraPy Framework folder
-13. A new website can be scraped by removing the previous websites config file from the "config" folder and replacing it wit the config file of the next website
+1. Navigate to the "wildlifetrade/Data_collection/scraper/config" directory on your drive
+2. Open the "config.py" file and fill the variables in the file with CSS-selectors, links and other information based on the website you want to scrape. Follow the annotations in the file.
+3. Navigate to the "wildlifetrade/Data_collection" in terminal and run the script with
+   ```ruby
+   scrapy crawl scraper
+   ```
+4. If everything is set up correctly, the scraped information is stored in a SQLite database saved to the "wildlifetrade/Data_collection" folder
+
+To be noted:
+- You can change the name of the SQLite database and the tables of the database in the "pipelines.py" file. There you can also choose if a new table is created once you run the crawler. At first run this variable has to be True.
+- New website can be scraped by removing the previous websites config file from the "config" folder and replacing it with the config file of the next website
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
