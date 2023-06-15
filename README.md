@@ -8,9 +8,9 @@ The data collection from a website is done using web-crawling framework ScraPy v
 Steps
 1. Start a new virtual environment, using a Python version 3.6 or higher
    Conda:
-   '''
+   ```
    conda create env --name myenv python=3.6
-   '''
+   ```
 3. Follow the installation and set up insctuctions 
 4. After the ScraPy framework is set up, replace the spider Python file in "spiders" folder with the "scraper.py" Python file in "Data collection/spiders"
 5. Replace files "items.py", "middlewares.py", "pipelines,py" and "settings.py" in your ScraPy framework's "scraper" folder with the same files from "Data collection"
