@@ -74,7 +74,7 @@ for index, row in df.iterrows():
 
     # Finds price information from df['price'] column
     if row['price']:
-        price_cell = row['price']
+        price_cell = str(row['price'])
         price_list = re.findall(r'\d+(?:[,.]\d+)*', price_cell)
         price_cell_str = str(price_cell)
 
