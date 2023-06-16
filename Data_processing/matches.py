@@ -21,7 +21,7 @@ keyword_regexp = '|'.join(  # | == OR in regular expressions
 )
 
 # Load scraped data from the SQLite database
-db = 'reptilesales.db'
+db = 'wildlifetrade.db'
 data = sqlite3.connect(db)
 
 df = pd.read_sql_query('SELECT * FROM reptiles_tb', data)
