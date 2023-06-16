@@ -5,9 +5,9 @@ Tool for scraping websites trading wildlife species and processing the scraped d
 
 ## 1. Preparation
 
-The data collection from a website is done using web-crawling framework ScraPy. Before using the Wildlife trade data collector user should familiarise themself with Python annd ScraPy and web scraping using CSS-selectors in general. We suggest using virtual environment, such as Conda, to ensure that your project has all the required dependencies and to avoid conflicts between other Python projects. This code is last tested using Python version 3.11.3 and ScraPy version 2.9.0 on Windows and Ubuntu.
+The data collection from a website is done using web-crawling framework ScraPy. Before using the Wildlife trade data collector, user should familiarise themself with Python annd ScraPy and web scraping using CSS-selectors in general. We suggest using virtual environment, such as Conda, to ensure that your project has all the required dependencies and to avoid conflicts between other Python projects. This code is last tested using Python version 3.11.3 and ScraPy version 2.9.0 on Windows and Ubuntu.
 
-Steps
+Steps:
 1. Create a new conda virtual environment using a supported Python 3 version. Replace "myenv" with the name of your choice.
    ```ruby
    conda create --name myenv python=3
@@ -46,16 +46,16 @@ To be noted:
 
 ## 3. Data processing
 
-The data processing filters data enries from a data set that include keywords listed in a seperate file. Then it extracts information from the selected data entries
+The data processing filters data entries from a data set that include keywords listed in a seperate file. Then it extracts information from the selected data entries
 
 Steps
-1. Download the "Data processing" folder to your environment
-2. Insert your SQLite database of scraped data entries to the "Data processing" folder
+1. Navigate to the "wildlifetrade/Data_processing" folder
+2. Insert your SQLite database of scraped data entries from the "wildlifetrade/Data_collection" folder to the "wildlifetrade/Data_processin" folder
 3. The .csv files in the folder can be modified depending on the wildlife studied 
-  - "keywords.csv" consists of all keywords which are searched from the scraped data. Data entries including the keywords are filtereded to be processed               further.
-  - "reptilesynonyms.csv" consists of synonyms of each species studied. First column indicates the scientific name of the species and rest of the columns are         synonyms for the species.
-  - "seller_or_buyer.csv" consists of synonyms fo keywords indicating intent of the trade. Synonyms can be added under each column and new columns can be             added.
-  - "currency_symbols.csv" consists of symbolsof currencies and their corresponding abbreviations.
+  - "keywords.csv" consists of all keywords which are searched from the scraped data.
+  - "reptilesynonyms.csv" consists of synonyms of each species studied. First column indicates the scientific name of the species and rest of the columns are synonyms for the species.
+  - "seller_or_buyer.csv" consists of synonyms of keywords indicating intent of the trade. Synonyms can be added under each column and new columns can be added.
+  - "currency_symbols.csv" consists of symbols of currencies and their corresponding abbreviations.
   - "locationlist.csv" consists of columns of country names. Under each country name are names of locations that are located in that country.
 4. Run the all processing algorithms from the masterscript "processor.py" or
 5. Run each script separately. The scripts have to be run in order descripted in the "Flowchart.png" file.
