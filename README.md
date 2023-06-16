@@ -57,6 +57,7 @@ Steps
   - "seller_or_buyer.csv" consists of synonyms of keywords indicating intent of the trade. Synonyms can be added under each column and new columns can be added.
   - "currency_symbols.csv" consists of symbols of currencies and their corresponding abbreviations.
   - "locationlist.csv" is an empty file which can be used to manually list locations under country names, if the geocoder used in the script does not find a location automatically. The first row should consist of the country names and the locations should be listed under the responding country.
+    
 4a. Run the all processing algorithms from the masterscript
    ```ruby
    python processor.py
