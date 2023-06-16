@@ -64,8 +64,8 @@ Steps
    ```
 OR
 
-4b. Run each script separately. The script must be run in the right order, because the result of the previous script is used in the following script:
-      ```ruby
+4b. Run each script separately. The script must be run in the right order, because the result of the    previous script is used in the following script:
+   ```ruby
    python matches.py
    python species.py
    python trader_information.py
