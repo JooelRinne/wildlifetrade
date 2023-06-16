@@ -58,13 +58,12 @@ Steps
   - "currency_symbols.csv" consists of symbols of currencies and their corresponding abbreviations.
   - "locationlist.csv" is an empty file which can be used to manually list locations under country names, if the geocoder used in the script does not find a location automatically. The first row should consist of the country names and the locations should be listed under the responding country.
     
-4a. Run the all processing algorithms from the masterscript
+4. Run the all processing algorithms from the masterscript
    ```ruby
    python processor.py
    ```
-OR
-
-4b. Run each script separately. The script must be run in the right order, because the result of the    previous script is used in the following script:
+   OR
+Run each script separately. The script must be run in the right order, because the result of the       previous script is used in the following script:
    ```ruby
    python matches.py
    python species.py
