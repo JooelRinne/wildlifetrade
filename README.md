@@ -62,7 +62,7 @@ Steps
    ```ruby
    python processor.py
    ```
-   OR
+   OR<br>
    Run each script separately. The script must be run in the right order, because the result of the    previous script is used in the following script:
    ```ruby
    python matches.py
