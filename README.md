@@ -49,6 +49,10 @@ To be noted:
 The data processing filters data entries from a data set that include keywords listed in a seperate file. Then it extracts information from the selected data entries
 
 Steps
+1. Download spacy language model by running. Note that spacy must be installed before loading the model. 
+   ```ruby
+   python -m spacy download en_core_web_sm
+   ```
 1. Navigate to the "wildlifetrade/Data_processing" folder
 2. Insert your SQLite database of scraped data entries from the "wildlifetrade/Data_collection" folder to the "wildlifetrade/Data_processin" folder
 3. The .csv files in the folder can be modified depending on the wildlife studied 
