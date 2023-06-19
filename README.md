@@ -32,7 +32,10 @@ Steps:
 ## 2. Data collection
 1. Navigate to the "wildlifetrade/Data_collection/scraper/config" directory on your drive
 2. Open the "config.py" file and fill the variables in the file with CSS-selectors, links and other information based on the website you want to scrape. Follow the annotations in the file.
-   - SelectorGadget is a useful tool for determining the right CSS-selectors. It is available as an extension for Google Chrome: https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb
+   
+   - SelectorGadget is a useful tool for determining the right CSS-selectors. It is available as an extension for Google Chrome:
+https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb
+
 4. Navigate to the "wildlifetrade/Data_collection" directory in terminal and run the script with
    ```ruby
    scrapy crawl scraper
