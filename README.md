@@ -66,6 +66,8 @@ Steps
   - "currency_symbols.csv" consists of symbols of currencies and their corresponding abbreviations.
   - "locationlist.csv" is an empty file which can be used to manually list locations under country names, if the geocoder used in the script does not find a location automatically. The first row should consist of the country names and the locations should be listed under the responding country.
     
+5. Before runnning the processing algorithms, make sure that the names of your database and the table where your data is located are the same in Data_processing/matches.py file as the database and table names you used for storing the data in the Data_collection/pipelines.py file.  
+    
 4. Run the all processing algorithms from the masterscript
    ```ruby
    python processor.py
