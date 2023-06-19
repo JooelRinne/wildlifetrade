@@ -53,7 +53,7 @@ To be noted:
 The data processing filters data entries from a data set that include keywords listed in a seperate file. Then it extracts information from the selected data entries
 
 Steps
-1. Download spacy language model by running. Note that spacy must be installed before loading the model. 
+1. Download spacy language model by running the command below in your terminal. Note that spacy must be installed before loading the model. 
    ```ruby
    python -m spacy download en_core_web_sm
    ```
