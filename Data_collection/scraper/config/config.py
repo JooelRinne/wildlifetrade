@@ -51,6 +51,13 @@ class Config():
         # Used if items are listed in more than one page and a "next page" link is found on the page
         next_page_href = None
 
+        # If paging is needed fill the following
+        starting_page = None    # The number used in the page url to indicate the page after the first page
+        last_page = None        # The number used in the page url to indicate the last page
+        paging_interval = None  # Interval between pages, usually 1
+        paging_string_1 = ''    # In the page url the string that is added to the base url before the page number
+        paging_string_2 = ''    # In the page url the string that is added to the base url after the page number
+
         # Fields that are found on the same page leve with "item_card"
         first_page_fields = {
             'timestamp' : None,
@@ -102,7 +109,7 @@ class Config():
             'website_type': None                        
         }
 
-        return pages, category_card, category_card_2, inner_page_href, item_card, first_page_fields, inner_page_fields, type_in_fields, next_page_href
+        return pages, category_card, category_card_2, inner_page_href, item_card, first_page_fields, inner_page_fields, type_in_fields, next_page_href, starting_page, last_page, paging_interval, paging_string_1, paging_string_2
 
     def download_delay(self):
         download_delay = 0
