@@ -58,7 +58,7 @@ Steps
    python -m spacy download en_core_web_sm
    ```
 1. Navigate to the "wildlifetrade/Data_processing" folder
-2. Insert your SQLite database of scraped data entries from the "wildlifetrade/Data_collection" folder to the "wildlifetrade/Data_processin" folder
+2. Insert your SQLite database of scraped data entries from the "wildlifetrade/Data_collection" folder to the "wildlifetrade/Data_processing" folder
 3. The .csv files in the folder can be modified depending on the wildlife studied 
   - "keywords.csv" consists of all keywords which are searched from the scraped data.
   - "reptilesynonyms.csv" consists of synonyms of each species studied. First column indicates the scientific name of the species and rest of the columns are synonyms for the species.
