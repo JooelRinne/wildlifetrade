@@ -96,7 +96,12 @@ The accuracy of the data procssing is assessed with two scripts "filteringaccura
 Steps
 1. Navigate to the wildlifetrade/Accuracy_assessment" folder.
 2. Insert your SQLite database containing the scraped data entries to the "wildlifetrade/Accuracy_assessment" folder which contains the "filteringaccuracy.py" script.
-3. Edit the "filteringaccuracy.py" script and make sure that the variable "data_selection" is True and "accuracy_assessment" is False.
+3. Edit the "filteringaccuracy.py" script and make sure that
+   - The variable "data_selection" is set as True.
+   - The variable "accuracy_assessment" is set as False.
+   - The variable "db" corresponds to the name of your SQLite database.
+   - The variable "tb" corresponds to the name of your SQLite database table name.
+     
 4. Select the sample size of your assessement data (number of data entries) by setting the "sample_size" variable (for example 100).
 5. Run the "filteringaccuracy.py" script. Six .csv files are created, two of each website type. The files have as many randomly selected data entries from the database as defined by the "sample_size" variable.
    ```ruby
