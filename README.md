@@ -99,6 +99,9 @@ Steps
 3. Edit the "filteringaccuracy.py" script and make sure that the variable "data_selection" is True and "accuracy_assessment" is False.
 4. Select the sample size of your assessement data (number of data entries) by setting the "sample_size" variable (for example 100).
 5. Run the "filteringaccuracy.py" script. Six .csv files are created, two of each website type. The files have as many randomly selected data entries from the database as defined by the "sample_size" variable.
+   ```ruby
+   python filteringaccuracy.py
+   ```
 6. Review the .csv files manually. Insert new column "filtered" to the files and mark the entries that should be filtered (include species you are searching) with "y" and the entries that should be filtered with "n" as done in the example .csv file  "forum_revieweddata.csv".  
 7. Name the reviewed .csv files same way as they are refered in the "filteringaccuracy.py" script.
 8. Edit the "filteringaccuracy.py" script again and make sure that this time the variable "data_selection" is False and "accuracy_assessment" is True.
