@@ -108,8 +108,10 @@ Steps
    python filteringaccuracy.py
    ```
 6. Review the recently created .csv files manually. Insert new column "filtered" to the files and mark the entries that should be filtered (include species you are searching) with "y" and the entries that should be filtered with "n" as done in the example .csv file  "example_revieweddata.csv".  
-7. Name the reviewed .csv files same way as they are refered in the "filteringaccuracy.py" script.
-8. Edit the "filteringaccuracy.py" script again and make sure that this time the variable "data_selection" is False and "accuracy_assessment" is True.
+7. Add '_reviewed' to the end of the names of the reviewed .csv files e.g., "Shopt_testdata_reviewed.csv". The accuracy assessment part of the script counts the accuracy for all files containing the word 'reviewed'. 
+8. Edit the "filteringaccuracy.py" script again and make sure that this time
+   - The variable "data_selection" is set as False
+   - The variable "accuracy_assessment" is set as True.
 9. The script produces accuracy_assessment reports including accuracies and omission and commission errors for each six reviewed data sets.
 
 -----
