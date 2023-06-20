@@ -88,7 +88,7 @@ Steps
 
 The accuracy of the data procssing is assessed with two scripts "filteringaccuracy.py" and "processingaccuracy".
 
-###1. Filtering accuracy
+### 1. Filtering accuracy
 
 "filteringaccuracy.py" creates accuracy assessment reports of the filterin phase done in the "matches.py" script of the data processing phase. 
 
@@ -104,7 +104,7 @@ Steps
 
 -----
 
-###2. Processing accuracy
+### 2. Processing accuracy
 
 "processingaccuracy.py" creates accuracy assessment reports of the rest of the processing phase done by the rest of the scripts. 
 
