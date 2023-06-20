@@ -1,3 +1,3 @@
-,Unnamed: 0,acquired,source,timestamp,reptile,price,quantity,description,comments,location,other,image,seller,commenter,intent,websitetype,original_datarow,filtered
+,Unnamed: 0,acquired,source,timestamp,reptile,price,quantity,description,comments,location,other,image,seller,commenter,intent,website_type,original_datarow,filtered
 ,,example,example,example,RIGHT REPTILE,example,example,example,example,example,example,example,example,example,example,example,example,y
 ,,example,example,example,WRONG REPTILE,example,example,example,example,example,example,example,example,example,example,example,example,n
