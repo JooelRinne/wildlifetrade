@@ -30,6 +30,7 @@ Steps:
    ```
    
 ## 2. Data collection
+Steps:
 1. Navigate to the "wildlifetrade/Data_collection/scraper/config" directory on your drive.
 2. Open the "config.py" file and fill the variables in the file with CSS-selectors, links and other information based on the website you want to scrape. Follow the annotations in the file.
    
@@ -52,7 +53,7 @@ To be noted:
 
 The data processing finds matches from the scraped data to the keywords listed in the file "Data_processing/keywords.csv". Then it extracts information from the matching data entries.
 
-Steps
+Steps:
 1. Download spacy language model by running the command below in your terminal. Note that spacy must be installed before loading the model. 
    ```ruby
    python -m spacy download en_core_web_sm
