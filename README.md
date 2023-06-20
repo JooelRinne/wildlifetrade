@@ -100,7 +100,7 @@ Steps
    - The variable "data_selection" is set as True.
    - The variable "accuracy_assessment" is set as False.
    - The variable "db" corresponds to the name of your SQLite database.
-   - The variable "tb" corresponds to the name of your SQLite database table name.
+   - The variable "tb" corresponds to the name of your SQLite database data table name.
      
 4. Select the sample size of your assessement data (number of data entries) by setting the "sample_size" variable (for example 100).
 5. Run the "filteringaccuracy.py" script. Six .csv files are created, two of each website type. The files have as many randomly selected data entries from the database as defined by the "sample_size" variable.
