@@ -107,7 +107,7 @@ df_withseller_id = df[df['Seller_id']!='[]']
 
 
 subset_columns = ['Species', 'Quantity', 'Price', 'Currency', 'Intent', 'Seller_id', 'location_spacy']
-print(df_withseller_id[subset_columns])
+
 non_empty_columns = df_withseller_id[subset_columns].apply(lambda x: sum(item != '[]' for item in x), axis=1)
 
 # Determine how many of the columns has to have data so the deduplication is taken into consideration
@@ -127,7 +127,6 @@ df_withseller_id = pd.concat([deduplicated_df, df_withseller_id[~condition]])
 # Combine rows with seller id and rest of the roews
 df = pd.concat([df_withseller_id, df_noseller_id])
 
-print(df)
 # Drop columns that might have personal information
 columns = df[['original_datarow', 'Species', 'Quantity', 'Price', 'Currency', 'Intent', 'Seller_id', 'lat', 'lon']]
 
