@@ -91,7 +91,7 @@ The accuracy of the data procssing is assessed with two scripts "filteringaccura
 
 ### 1. Filtering accuracy
 
-"filteringaccuracy.py" creates accuracy assessment reports of the filterin phase done in the "matches.py" script of the data processing phase. 
+"filteringaccuracy.py" creates accuracy assessment reports of the filtering phase done in the "matches.py" script of the data processing phase. 
 
 Steps
 1. Navigate to the wildlifetrade/Accuracy_assessment" folder.
@@ -103,11 +103,11 @@ Steps
    - The variable "tb" corresponds to the name of your SQLite database data table name.
      
 4. Select the sample size of your assessement data (number of data entries) by setting the "sample_size" variable (for example 100).
-5. Run the "filteringaccuracy.py" script. Six .csv files are created, two of each website type. The files have as many randomly selected data entries from the database as defined by the "sample_size" variable.
+5. Run the "filteringaccuracy.py" script. The script creates two .csv files per website type found in the data; traingindata file and testdata file. The files have as many randomly selected data entries from the database as defined by the "sample_size" variable.
    ```ruby
    python filteringaccuracy.py
    ```
-6. Review the .csv files manually. Insert new column "filtered" to the files and mark the entries that should be filtered (include species you are searching) with "y" and the entries that should be filtered with "n" as done in the example .csv file  "forum_revieweddata.csv".  
+6. Review the .csv files manually. Insert new column "filtered" to the files and mark the entries that should be filtered (include species you are searching) with "y" and the entries that should be filtered with "n" as done in the example .csv file  "example_revieweddata.csv".  
 7. Name the reviewed .csv files same way as they are refered in the "filteringaccuracy.py" script.
 8. Edit the "filteringaccuracy.py" script again and make sure that this time the variable "data_selection" is False and "accuracy_assessment" is True.
 9. The script produces accuracy_assessment reports including accuracies and omission and commission errors for each six reviewed data sets.
