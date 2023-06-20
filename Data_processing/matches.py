@@ -5,7 +5,12 @@ import numpy as np
 import pandas as pd
 import re
 import sqlite3
+import sys
 
+# Name of the database, needs to match to the name of the database in settings.py
+db = 'wildlifetrade.db'
+# Name of the database table, needs to match to the name of the table in settings.py
+tb = 'reptiles_tb'
 
 
 # Prepares keyword list:
@@ -21,10 +26,9 @@ keyword_regexp = '|'.join(  # | == OR in regular expressions
 )
 
 # Load scraped data from the SQLite database
-db = 'wildlifetrade.db'
 data = sqlite3.connect(db)
 
-df = pd.read_sql_query('SELECT * FROM reptiles_tb', data)
+df = pd.read_sql_query(f'SELECT * FROM {tb}', data)
 
 # Creates 'original_datarow' column used later
 df['original_datarow'] = np.arange(len(df))
@@ -67,18 +71,21 @@ df['matches'] = df['matches'].apply(lambda x: ',  '.join(set(x)))
 
 df['matches'].replace('', float('NaN'), inplace=True)
 df.dropna(subset = ['matches'], inplace=True)
+if len(df) == 0:
+    print('Your data does not contain any matches to the keywords you have provided')
+    sys.exit()
+else:    
+    for keyword in keywords:
+        # If strings in a matching text are less then 31 characters apart the keyword is saved
+        keyword_regex = keyword.replace(' ', '.{0,30}?')
+        keyword_regex_rest = keyword.replace(' ', '.{31, 10000}?')
+        df['keywords'] = df.apply(lambda x: x['keywords'] + [keyword] if re.findall(keyword_regex, x['matches'], re.IGNORECASE | re.MULTILINE | re.DOTALL) else x['keywords'], axis=1) 
+        
+    df['keywords'] = df['keywords'].apply(lambda x: ',  '.join(set(x)))
 
-# If strings in a matching text are less then 31 characters apart the keyword is saved
-for keyword in keywords:
-    keyword_regex = keyword.replace(' ', '.{0,30}?')
-    keyword_regex_rest = keyword.replace(' ', '.{31, 10000}?')
-    df['keywords'] = df.apply(lambda x: x['keywords'] + [keyword] if re.findall(keyword_regex, x['matches'], re.IGNORECASE | re.MULTILINE | re.DOTALL) else x['keywords'], axis=1) 
-    
-df['keywords'] = df['keywords'].apply(lambda x: ',  '.join(set(x)))
+    # If df['keywords'] column is empty drops the data entry
+    df['keywords'].replace('', float('NaN'), inplace=True)
+    df.dropna(subset = ['keywords'], inplace=True)
 
-# If df['keywords'] column is empty drops the data entry
-df['keywords'].replace('', float('NaN'), inplace=True)
-df.dropna(subset = ['keywords'], inplace=True)
-
-# Saves the results to a .csv file
-df.to_csv('matches.csv')
+    # Saves the results to a .csv file
+    df.to_csv('matches.csv')

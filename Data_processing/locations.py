@@ -45,13 +45,27 @@ for index, row in df.iterrows():
                 df.at[index, 'location_spacy'] = doc
                 osm = geocoder.osm(str(ent))
                 df.at[index, 'location_osm'] = osm
-                if osm.latlng is not None:
-                    df.at[index, 'coordinates'] = osm.latlng
-                    df.at[index, 'lat'] = float(osm.latlng[0])
-                    df.at[index, 'lon'] = float(osm.latlng[1])
+                if osm.country is not None:
+                    country_osm = geocoder.osm(osm.country)
+                    if country_osm.latlng is not None:
+                        df.at[index, 'coordinates'] = country_osm.latlng
+                        df.at[index, 'country'] = country_osm.country
+                        df.at[index, 'lat'] = float(country_osm.latlng[0])
+                        df.at[index, 'lon'] = float(country_osm.latlng[1])
                 df.loc[index, 'location_found_from'] = 'location'
-                df.loc[index, 'location_match'] = str(row['location'])
                 location_found = True
+            # if ent.label_ == 'GPE':
+            #     df.at[index, 'location_spacy'] = doc
+            #     osm = geocoder.osm(str(ent))
+            #     df.at[index, 'location_osm'] = osm
+            #     if osm.latlng is not None:
+            #         df.at[index, 'coordinates'] = osm.latlng
+            #         df.at[index, 'country'] = osm.country
+            #         df.at[index, 'lat'] = float(osm.latlng[0])
+            #         df.at[index, 'lon'] = float(osm.latlng[1])
+            #     df.loc[index, 'location_found_from'] = 'location'
+            #     df.loc[index, 'location_match'] = str(row['location'])
+            #     
   
     # If location is not found search keywords from locationlist matching text in df
     if not location_found:
@@ -64,12 +78,15 @@ for index, row in df.iterrows():
                                 location = re.findall(str(r[col]), str(row[search_column]), re.IGNORECASE)
                                 if location != '[]' and str(r[col]) != 'nan' and location:
                                     df.loc[index, 'location_spacy'] = col
-                                    osm = geocoder.osm(str(col))
+                                    osm = geocoder.osm(str(ent))
                                     df.at[index, 'location_osm'] = osm
-                                    if osm.latlng is not None:
-                                        df.at[index, 'coordinates'] = osm.latlng
-                                        df.at[index, 'lat'] = float(osm.latlng[0])
-                                        df.at[index, 'lon'] = float(osm.latlng[1])
+                                    if osm.country is not None:
+                                        country_osm = geocoder.osm(osm.country)
+                                        if country_osm.latlng is not None:
+                                            df.at[index, 'coordinates'] = country_osm.latlng
+                                            df.at[index, 'country'] = country_osm.country
+                                            df.at[index, 'lat'] = float(country_osm.latlng[0])
+                                            df.at[index, 'lon'] = float(country_osm.latlng[1])    
 
                                     df.loc[index, 'location_found_from'] = search_column
                                     df.loc[index, 'location_match'] = str(r[col])
@@ -80,17 +97,37 @@ for index, row in df.iterrows():
 df['Species'].replace('', float('NaN'), inplace=True)
 df.dropna(subset = ['Species'], inplace=True)
 
-#Remove duplicates, where Seller_id, location, quantity, price, currency, intent and species are indentical 
+
+#Remove duplicates, where Seller_id, location, quantity, price, currency, intent and species are indentical
 df['Seller_id'] = df['Seller_id'].astype(str)
 df['location_spacy'] = df['location_spacy'].astype(str)
 
 df_noseller_id = df[df['Seller_id']=='[]']
 df_withseller_id = df[df['Seller_id']!='[]']
 
-df_withseller_id = df_withseller_id.drop_duplicates(subset=['Species', 'Quantity', 'Price', 'Currency', 'Intent', 'Seller_id', 'location_spacy'])
 
+subset_columns = ['Species', 'Quantity', 'Price', 'Currency', 'Intent', 'Seller_id', 'location_spacy']
+print(df_withseller_id[subset_columns])
+non_empty_columns = df_withseller_id[subset_columns].apply(lambda x: sum(item != '[]' for item in x), axis=1)
+
+# Determine how many of the columns has to have data so the deduplication is taken into consideration
+# How many empty columns is allowed? Enter here:
+empty_columns = 0
+
+# Create a mask to identify rows that match the condition of empty columns allowed
+condition = non_empty_columns >= len(subset_columns) - empty_columns
+
+# Perform deduplication only on rows that satisfy the condition
+deduplicated_df = df_withseller_id[condition].drop_duplicates(subset=subset_columns)
+
+# Combine the deduplicated rows with the rows that don't meet the condition
+df_withseller_id = pd.concat([deduplicated_df, df_withseller_id[~condition]])
+
+
+# Combine rows with seller id and rest of the roews
 df = pd.concat([df_withseller_id, df_noseller_id])
 
+print(df)
 # Drop columns that might have personal information
 columns = df[['original_datarow', 'Species', 'Quantity', 'Price', 'Currency', 'Intent', 'Seller_id', 'lat', 'lon']]
 
