@@ -131,15 +131,15 @@ Steps:
 2. Make sure that the resulting .csv file from the "matches.py" script, namely the "matches.csv" is in the same folder as the "processingaccuracy.py" script.
 3. Edit the "processingaccuracy.py" script and make sure that
    - The variable "data_selection" is set as True
-   - The variable "accuracy_assessment" is set as False.
+   - The variable "accuracy_assessment" is set as False
      
 4. Select the sample size of your assessement data (number of data entries) by setting the "sample_size" variable (for example 100).
 5. Run the "processingaccuracy.py" script. Two .csv files are created, training and test data sets. The files have as many randomly selected data entries from the database as defined by the "sample_size" variable.
    ```ruby
    python processingaccuracy.py
    ```
-6. Review the recently created .csv files manually
-   - For each row, manually add the correct species, quantity, price, currency and location information etc based on the data on the row to the corresponding "reviewed" columns located at the end of the .csv file (Species_r, Quantity_r, Price_r, Currency_r, Intent_r, Location_r)
+6. Review the recently created .csv files manually.
+   - For each row, manually add the correct species, quantity, price, currency and location information etc based on the data on the row to the corresponding "reviewed" columns located at the end of the .csv file (Species_r, Quantity_r, Price_r, Currency_r, Intent_r, Location_r).
    - Leave the field empty if the information is not found from the data.
    - If the data row should not be included in the "mathces.csv" file, i.e., the data row does not contain information about a species of interest, write "NO" to each of the "reviewed" columns ending with "_r".
      
@@ -147,7 +147,7 @@ Steps:
 8. Edit the "processingaccuracy.py" script again and make sure that this time
     - The variable "data_selection" is set as False
     - The variable "accuracy_assessment" is set as True.
-9. Copy "wildlifetrade/Data_processing/results.csv" file to the "wildlifetrade/Accuracy_assessment" folder
+9. Copy "wildlifetrade/Data_processing/results.csv" file to the "wildlifetrade/Accuracy_assessment" folder.
 10. Run the script again.
       ```ruby
       python processingaccuracy.py
