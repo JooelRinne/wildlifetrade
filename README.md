@@ -148,7 +148,7 @@ Steps:
     - The variable "data_selection" is set as False
     - The variable "accuracy_assessment" is set as True.
 9. Copy "wildlifetrade/Data_processing/results.csv" file to the "wildlifetrade/Accuracy_assessment" folder
-10. Run the script again.
+Run the script again.
    ```ruby
    python processingaccuracy.py
    ```
