@@ -87,7 +87,7 @@ Steps:
 
 ## 4. Accuracy assessment
 
-The accuracy of the data procssing is assessed with two scripts "filteringaccuracy.py" and "processingaccuracy".
+The accuracy of the data procssing is assessed with two scripts "filteringaccuracy.py" and "processingaccuracy" found in the "wildlifetrade/Accuracy_assessment" folder.
 
 ### 1. Filtering accuracy
 
@@ -102,18 +102,19 @@ Steps
    - The variable "db" corresponds to the name of your SQLite database.
    - The variable "tb" corresponds to the name of your SQLite database data table name.
      
-4. Select the sample size of your assessement data (number of data entries) by setting the "sample_size" variable (for example 100).
+4. Select the sample size of your assessement data (number of data entries) by setting the "sample_size" variable (to for example 100).
 5. Run the "filteringaccuracy.py" script. The script creates two .csv files per website type found in the data; traingindata file and testdata file. The files have as many randomly selected data entries from the database as defined by the "sample_size" variable.
    ```ruby
    python filteringaccuracy.py
    ```
 6. Review the recently created .csv files manually. Insert new column "filtered" to the files and mark the entries that should be filtered (include species you are searching) with "y" and the entries that should be filtered with "n" as done in the example .csv file  "example_revieweddata.csv".  
-7. Add '_reviewed' to the end of the names of the reviewed .csv files e.g., "Shopt_testdata_reviewed.csv". The accuracy assessment part of the script counts the accuracy for all files containing the word 'reviewed'.
+7. Add '_reviewed' to the end of the names of the reviewed .csv files e.g., "Shop_testdata_reviewed.csv". The accuracy assessment part of the script counts the accuracy for all files containing the word 'reviewed'.
 8. Copy "wildlifetrade/Data_processing/matches.csv" file to the "wildlifetrade/Accuracy_assessment" folder
 9. Edit the "filteringaccuracy.py" script again and make sure that this time
    - The variable "data_selection" is set as False
    - The variable "accuracy_assessment" is set as True.
-10. The script produces accuracy_assessment reports including accuracies and omission and commission errors for each six reviewed data sets.
+10. The script produces accuracy_assessment reports including accuracies and omission and commission errors for each reviewed data sets.
+11. The training datasets can be used to develop the method further and the test dataset can be used to assess the changes without overfitting.
 
 -----
 
