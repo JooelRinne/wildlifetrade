@@ -93,7 +93,7 @@ The accuracy of the data procssing is assessed with two scripts "filteringaccura
 
 "filteringaccuracy.py" creates accuracy assessment reports of the filtering phase done in the "matches.py" script of the data processing phase. 
 
-Steps
+Steps:
 1. Navigate to the wildlifetrade/Accuracy_assessment" folder.
 2. Insert your SQLite database containing the scraped data entries to the "wildlifetrade/Accuracy_assessment" folder which contains the "filteringaccuracy.py" script.
 3. Edit the "filteringaccuracy.py" script and make sure that
@@ -122,7 +122,7 @@ Steps
 
 "wildlifetrade/Accuracy_assessment/processingaccuracy.py" creates accuracy assessment reports of the rest of the processing phase done by the rest of the scripts. 
 
-Steps
+Steps:
 1. Navigate to the wildlifetrade/Accuracy_assessment" folder.
 2. Make sure that the resulting .csv file from the "matches.py" script, namely the "matches.csv" is in the same folder as the "processingaccuracy.py" script.
 3. Edit the "processingaccuracy.py" script and make sure that the variable "data_selection" is True and "accuracy_assessment" is False.
