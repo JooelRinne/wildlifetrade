@@ -153,5 +153,5 @@ Steps:
       python processingaccuracy.py
       ```
 11. The script produces accuracy_assessment reports including accuracies of each data field reviewed.
-12. The training datasets can be used to develop the method further and the test dataset can be used to assess the changes without overfitting
+12. The training datasets can be used to develop the method further and the test dataset can be used to assess the changes without overfitting.
 
