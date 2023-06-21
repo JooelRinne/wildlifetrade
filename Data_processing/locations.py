@@ -49,7 +49,7 @@ for index, row in df.iterrows():
                     country_osm = geocoder.osm(osm.country)
                     if country_osm.latlng is not None:
                         df.at[index, 'coordinates'] = country_osm.latlng
-                        df.at[index, 'country'] = country_osm.country
+                        df.at[index, 'Country'] = country_osm.country
                         df.at[index, 'lat'] = float(country_osm.latlng[0])
                         df.at[index, 'lon'] = float(country_osm.latlng[1])
                 df.loc[index, 'location_found_from'] = 'location'
@@ -84,7 +84,7 @@ for index, row in df.iterrows():
                                         country_osm = geocoder.osm(osm.country)
                                         if country_osm.latlng is not None:
                                             df.at[index, 'coordinates'] = country_osm.latlng
-                                            df.at[index, 'country'] = country_osm.country
+                                            df.at[index, 'Country'] = country_osm.country
                                             df.at[index, 'lat'] = float(country_osm.latlng[0])
                                             df.at[index, 'lon'] = float(country_osm.latlng[1])    
 
@@ -128,7 +128,7 @@ df_withseller_id = pd.concat([deduplicated_df, df_withseller_id[~condition]])
 df = pd.concat([df_withseller_id, df_noseller_id])
 
 # Drop columns that might have personal information
-columns = df[['original_datarow', 'Species', 'Quantity', 'Price', 'Currency', 'Intent', 'Seller_id', 'lat', 'lon']]
+columns = df[['original_datarow', 'Species', 'Quantity', 'Price', 'Currency', 'Intent', 'Seller_id', 'Country', 'lat', 'lon']]
 
 new_df = columns.copy()
 # Saves to file
