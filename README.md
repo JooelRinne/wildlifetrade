@@ -113,9 +113,12 @@ Steps:
 9. Edit the "filteringaccuracy.py" script again and make sure that this time
    - The variable "data_selection" is set as False
    - The variable "accuracy_assessment" is set as True.
-     
-10. The script produces accuracy_assessment reports including accuracies and omission and commission errors for each reviewed data sets.
-11. The training datasets can be used to develop the method further and the test dataset can be used to assess the changes without overfitting.
+10. Run the script again.
+   ```ruby
+   python filteringaccuracy.py
+   ```
+11. The script produces accuracy_assessment reports including accuracies and omission and commission errors for each reviewed data sets.
+12. The training datasets can be used to develop the method further and the test dataset can be used to assess the changes without overfitting.
 
 -----
 
