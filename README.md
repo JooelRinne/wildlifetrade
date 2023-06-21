@@ -125,12 +125,14 @@ Steps:
 Steps:
 1. Navigate to the wildlifetrade/Accuracy_assessment" folder.
 2. Make sure that the resulting .csv file from the "matches.py" script, namely the "matches.csv" is in the same folder as the "processingaccuracy.py" script.
-3. Edit the "processingaccuracy.py" script and make sure that the variable "data_selection" is True and "accuracy_assessment" is False.
-4. Select the sample size of your assessement data (number of data entries) by setting the "sample_size" variable (for example 100).
-5. Run the "processingaccuracy.py" script. Two .csv files are created, validation and test data sets. The files have as many randomly selected data entries from the database as defined by the "sample_size" variable.
-6. Review the .csv files manually. Review the generated .csv files manually by determining the right data fields (Species_r, Quantity_r, Price_r, Currency_r, Location_r and Intent_r) as done in the example .csv file "processing_validationdata_reviewed". Leave the field empty if the information is not found from the data entry. If the whole data entry should not be included write "NO" to each of the reviewed columns "ending with _r".
-7. Name the reviewed .csv files same way as they are refered in the "processingaccuracy.py" script.
-8. Edit the "processingaccuracy.py" script again and make sure that this time the variable "data_selection" is False and "accuracy_assessment" is True.
-9. The script produces accuracy_assessment reports including accuracies of each data field reviewed. 
+3. Edit the "processingaccuracy.py" script and make sure that
+   - The variable "data_selection" is set as True
+   - The variable "accuracy_assessment" is set as False.
+5. Select the sample size of your assessement data (number of data entries) by setting the "sample_size" variable (for example 100).
+6. Run the "processingaccuracy.py" script. Two .csv files are created, validation and test data sets. The files have as many randomly selected data entries from the database as defined by the "sample_size" variable.
+7. Review the .csv files manually. Review the generated .csv files manually by determining the right data fields (Species_r, Quantity_r, Price_r, Currency_r, Location_r and Intent_r) as done in the example .csv file "processing_validationdata_reviewed". Leave the field empty if the information is not found from the data entry. If the whole data entry should not be included write "NO" to each of the reviewed columns "ending with _r".
+8. Name the reviewed .csv files same way as they are refered in the "processingaccuracy.py" script.
+9. Edit the "processingaccuracy.py" script again and make sure that this time the variable "data_selection" is False and "accuracy_assessment" is True.
+10. The script produces accuracy_assessment reports including accuracies of each data field reviewed. 
 
 
