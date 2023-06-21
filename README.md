@@ -139,7 +139,7 @@ Steps:
    python processingaccuracy.py
    ```
 6. Review the recently created .csv files manually
-   - For each row, manually add the correct species, quantity, price, currency and location information etc based on the data on the row to the corresponding "reviewed" columns located at the end of the .csv file (Species_r, Quantity_r, Price_r, Currency_r, Location_r)
+   - For each row, manually add the correct species, quantity, price, currency and location information etc based on the data on the row to the corresponding "reviewed" columns located at the end of the .csv file (Species_r, Quantity_r, Price_r, Currency_r, Intent_r, Location_r)
    - Leave the field empty if the information is not found from the data.
    - If the data row should not be included in the "mathces.csv" file, i.e., the data row does not contain information about a species of interest, write "NO" to each of the "reviewed" columns ending with "_r".
      
