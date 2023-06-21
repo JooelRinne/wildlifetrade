@@ -113,7 +113,6 @@ Steps:
 9. Edit the "filteringaccuracy.py" script again and make sure that this time
    - The variable "data_selection" is set as False
    - The variable "accuracy_assessment" is set as True.
-     
 10. Run the script again.
    ```ruby
    python filteringaccuracy.py
