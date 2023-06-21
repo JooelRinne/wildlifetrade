@@ -107,7 +107,7 @@ Steps:
    ```ruby
    python filteringaccuracy.py
    ```
-6. Review the recently created .csv files manually. Insert new column "filtered" to the files and mark the entries that should be filtered (include species you are searching) with "y" and the entries that should be filtered with "n" as done in the example .csv file  "example_revieweddata.csv".  
+6. Review the recently created .csv files manually. Insert new column "filtered" to the files and mark the entries that should be filtered (include species you are searching) with "y" and the entries that should be filtered with "n" as done in the example .csv file "example_revieweddata.csv".  
 7. Add '_reviewed' to the end of the names of the reviewed .csv files e.g., "Shop_testdata_reviewed.csv". The accuracy assessment part of the script counts the accuracy for all files containing the word 'reviewed'.
 8. Copy "wildlifetrade/Data_processing/matches.csv" file to the "wildlifetrade/Accuracy_assessment" folder
 9. Edit the "filteringaccuracy.py" script again and make sure that this time
@@ -143,14 +143,15 @@ Steps:
    - Leave the field empty if the information is not found from the data.
    - If the data row should not be included in the "mathces.csv" file, i.e., the data row does not contain information about a species of interest, write "NO" to each of the "reviewed" columns ending with "_r".
      
-7. Add "_reviewed" to the end of the names of the reviewed .csv files. The reviewed files should be names "processing_trainingdata_reviewed.csv" and "processing_testdata_reviewed.csv"
+7. Add "_reviewed" to the end of the names of the reviewed .csv files. The reviewed files should be named "processing_trainingdata_reviewed.csv" and "processing_testdata_reviewed.csv".
 8. Edit the "processingaccuracy.py" script again and make sure that this time
     - The variable "data_selection" is set as False
     - The variable "accuracy_assessment" is set as True.
-9. Run the script again.
+9. Copy "wildlifetrade/Data_processing/results.csv" file to the "wildlifetrade/Accuracy_assessment" folder
+10. Run the script again.
    ```ruby
    python processingaccuracy.py
    ```
-10. The script produces accuracy_assessment reports including accuracies of each data field reviewed.
-11. The training datasets can be used to develop the method further and the test dataset can be used to assess the changes without overfitting
+11. The script produces accuracy_assessment reports including accuracies of each data field reviewed.
+12. The training datasets can be used to develop the method further and the test dataset can be used to assess the changes without overfitting
 
