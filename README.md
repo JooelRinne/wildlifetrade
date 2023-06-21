@@ -134,10 +134,25 @@ Steps:
    - The variable "accuracy_assessment" is set as False.
      
 4. Select the sample size of your assessement data (number of data entries) by setting the "sample_size" variable (for example 100).
-5. Run the "processingaccuracy.py" script. Two .csv files are created, validation and test data sets. The files have as many randomly selected data entries from the database as defined by the "sample_size" variable.
-6. Review the recently created .csv files manually. Review the generated .csv files manually by determining the right data fields (Species_r, Quantity_r, Price_r, Currency_r, Location_r and Intent_r) as done in the example .csv file "example_processingdata_reviewed.csv". Leave the field empty if the information is not found from the data entry. If the whole data entry should not be included write "NO" to each of the reviewed columns "ending with _r".
-7. Name the reviewed .csv files same way as they are refered in the "processingaccuracy.py" script.
-8. Edit the "processingaccuracy.py" script again and make sure that this time the variable "data_selection" is False and "accuracy_assessment" is True.
-9. The script produces accuracy_assessment reports including accuracies of each data field reviewed. 
+5. Run the "processingaccuracy.py" script. Two .csv files are created, training and test data sets. The files have as many randomly selected data entries from the database as defined by the "sample_size" variable.
+   ```ruby
+   python processingaccuracy.py
+   ```
+7. Review the recently created .csv files manually
+   - For each row, manually add the correct species, quantity, price, currency and location information etc based on the data on the row to the corresponding "reviewed" columns located at the end of the .csv file (Species_r, Quantity_r, Price_r, Currency_r, Location_r)
+   - Leave the field empty if the information is not found from the data.
+   - If the data row should not be included in the "mathces.csv" file, i.e., the data row does not contain information about a species of interest, write "NO" to each of the "reviewed" columns ending with "_r".
+     
+8. Add "_reviewed" to the end of the names of the reviewed .csv files. The reviewed files should be names "processing_trainingdata_reviewed.csv" and "processing_testdata_reviewed.csv"
+9. Edit the "processingaccuracy.py" script again and make sure that this time
+    - The variable "data_selection" is set as False
+    - The variable "accuracy_assessment" is set as True.
+      
+10. Run the script again.
+   ```ruby
+   python processingaccuracy.py
+   ```
 
+11.  The script produces accuracy_assessment reports including accuracies of each data field reviewed. 
+12. The training datasets can be used to develop the method further and the test dataset can be used to assess the changes without overfitting
 
