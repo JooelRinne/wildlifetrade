@@ -138,20 +138,19 @@ Steps:
    ```ruby
    python processingaccuracy.py
    ```
-7. Review the recently created .csv files manually
+6. Review the recently created .csv files manually
    - For each row, manually add the correct species, quantity, price, currency and location information etc based on the data on the row to the corresponding "reviewed" columns located at the end of the .csv file (Species_r, Quantity_r, Price_r, Currency_r, Location_r)
    - Leave the field empty if the information is not found from the data.
    - If the data row should not be included in the "mathces.csv" file, i.e., the data row does not contain information about a species of interest, write "NO" to each of the "reviewed" columns ending with "_r".
      
-8. Add "_reviewed" to the end of the names of the reviewed .csv files. The reviewed files should be names "processing_trainingdata_reviewed.csv" and "processing_testdata_reviewed.csv"
-9. Edit the "processingaccuracy.py" script again and make sure that this time
+7. Add "_reviewed" to the end of the names of the reviewed .csv files. The reviewed files should be names "processing_trainingdata_reviewed.csv" and "processing_testdata_reviewed.csv"
+8. Edit the "processingaccuracy.py" script again and make sure that this time
     - The variable "data_selection" is set as False
     - The variable "accuracy_assessment" is set as True.
-
-10. Run the script again.
+9. Run the script again.
    ```ruby
    python processingaccuracy.py
    ```
-11. The script produces accuracy_assessment reports including accuracies of each data field reviewed.
-12. The training datasets can be used to develop the method further and the test dataset can be used to assess the changes without overfitting
+10. The script produces accuracy_assessment reports including accuracies of each data field reviewed.
+11. The training datasets can be used to develop the method further and the test dataset can be used to assess the changes without overfitting
 
