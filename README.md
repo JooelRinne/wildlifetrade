@@ -120,7 +120,7 @@ Steps
 
 ### 2. Processing accuracy
 
-"processingaccuracy.py" creates accuracy assessment reports of the rest of the processing phase done by the rest of the scripts. 
+"wildlifetrade/Accuracy_assessment/processingaccuracy.py" creates accuracy assessment reports of the rest of the processing phase done by the rest of the scripts. 
 
 Steps
 1. Navigate to the wildlifetrade/Accuracy_assessment" folder.
