@@ -149,9 +149,9 @@ Steps:
     - The variable "accuracy_assessment" is set as True.
 9. Copy "wildlifetrade/Data_processing/results.csv" file to the "wildlifetrade/Accuracy_assessment" folder
 10. Run the script again.
-   ```ruby
-   python processingaccuracy.py
-   ```
+      ```ruby
+      python processingaccuracy.py
+      ```
 11. The script produces accuracy_assessment reports including accuracies of each data field reviewed.
 12. The training datasets can be used to develop the method further and the test dataset can be used to assess the changes without overfitting
 
