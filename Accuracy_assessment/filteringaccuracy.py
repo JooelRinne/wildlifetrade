@@ -1,85 +1,78 @@
-import numpy as np
-from numpy.core.numeric import NaN
 import pandas as pd
 import re
 import sqlite3
-from sqlalchemy import create_engine
+import glob
 
 # Choose which functions the script will run by writing True or False after the variable
 # Data selection randomly sleects the data entries from raw data to data sets 
-# sample_size determines how many data entries are chosen per data set
-data_selection = True
-sample_size = 100
+data_selection = False
 
 # Accuracy assessments compares a reviewed data sets to data processed by scripts 
 accuracy_assessment = True
 
+# Name of the database and the data table
+db = 'wildlifetrade.db'
+tb = 'reptiles_tb'
+
+# Sample size determines how many data entries are chosen per data set
+sample_size = 1
 
 if data_selection:
     # Loads data
     # If data in .csv:
-    raw_data = pd.read_csv('database.csv')
+    #raw_data = pd.read_csv('database.csv')
 
     # If data in .db:
-    # db = 'database.db'
-    # data = sqlite3.connect(db)
-    # raw_data = pd.read_sql_query('SELECT * FROM data_table', data)
+    data = sqlite3.connect(db)
+    raw_data = pd.read_sql_query(f'SELECT * FROM {tb}', data)
 
     # Selects training data sets based on website type
-    forum_trainingdata = raw_data.query("websitetype == 'forum'").sample(n = sample_size)
-    marketplace_trainingdata = raw_data.query("websitetype == 'marketplace' or websitetype == 'other'").sample(n = sample_size)
-    shop_trainingdata = raw_data.query("websitetype == 'shop'").sample(n = sample_size)
+    website_types = raw_data['website_type'].to_list()
+    dataframes = {}
 
-    # Selects test data sets based on website type
-    forum_testdata = raw_data.query("websitetype == 'forum'").sample(n = sample_size)
-    marketplace_testdata = raw_data.query("websitetype == 'marketplace' or websitetype == 'other'").sample(n  = sample_size)
-    shop_testdata = raw_data.query("websitetype == 'shop'").sample(n = sample_size)
+    for website_type in website_types:
+        try:        
+            dataframes[website_type + '_trainingdata'] = raw_data.query(f"website_type == '{website_type}'").sample(n = sample_size)
+            dataframes[website_type + '_testdata'] = raw_data.query(f"website_type == '{website_type}'").sample(n = sample_size)
+        except:
+            print(f'Could not find enough rows of the website type: {website_type} to create training data ')
 
     # Saves created data sets as .csv files
-    forum_trainingdata.to_csv('forum_validationdata.csv')
-    marketplace_trainingdata.to_csv('marketplace_validationdata.csv')
-    shop_trainingdata.to_csv('shop_validationdata.csv')
-    forum_testdata.to_csv('forum_testdata.csv')
-    marketplace_testdata.to_csv('marketplace_testdata.csv')
-    shop_testdata.to_csv('shop_testdata.csv')
+    for key, df in dataframes.items():
+        df['original_datarow'] = df.index
+        filename = f'{key}.csv'
+        df.to_csv(filename, index=False)
 
 
 if accuracy_assessment:
     # Reads reviewed training and test data sets
-    forum_trainingdata_r = pd.read_csv('forum_revieweddata.csv')
-    forum_testdata_r = pd.read_csv('forum_revieweddata_test.csv')
+    file_pattern = '*reviewed.csv*' # Pattern to match filenames
+    
+    csv_files = glob.glob(f'{file_pattern}')
 
-    marketplace_trainingdata_r = pd.read_csv('marketplace_revieweddata.csv')
-    marketplace_testdata_r = pd.read_csv('marketplace_revieweddata_test.csv')
+    # Filter out files containing the word 'processing'
+    csv_files = [file for file in csv_files if 'processing' not in file]
 
-    shop_trainingdata_r = pd.read_csv('shop_revieweddata.csv')
-    shop_testdata_r = pd.read_csv('shop_revieweddata_test.csv')
+    dataframes = {}
 
-    # Reads reviewed positive match data set
-    positive = pd.read_csv('positivematch_accuracy_reviewed.csv')
+    for file in csv_files:
+        filename = file.split('/')[-1]  # Extract the filename from the file path
+        df = pd.read_csv(file)  # Read the CSV file into a DataFrame
+        dataframes[filename] = df  # Add the DataFrame to the dictionary
 
     # Reads the filtered data by filtering algorithm
     filtered_df = pd.read_csv('matches.csv')
     filtered_df['original_datarow'] = filtered_df['original_datarow'].astype(str)
 
-
-    # Select the training or test data sets used as reference 
-    reference_datasets = [forum_trainingdata_r, forum_testdata_r, marketplace_trainingdata_r, marketplace_testdata_r, shop_trainingdata_r, shop_testdata_r, positive]
-    # reference_datasets = [positive]
-
-    for dataset in reference_datasets:
-        dataset['match_filtered'] = [[]] * dataset.shape[0]
-
     # Calculates overall accuracies and omission and comission errors for filtered data from training data and test data sets
     number = 1
-    for dataset in reference_datasets:
+    for key, dataset in dataframes.items():
+        dataset['match_filtered'] = [[]] * dataset.shape[0]
         for index, row in dataset.iterrows():
             search = str(row['original_datarow'])
             filtered = filtered_df.apply(lambda x: 'y' if re.fullmatch(search, x['original_datarow']) else None, axis=1) 
 
-            no_nones = filter(None.__ne__, filtered)
-            filtered = list(no_nones)
-
+            filtered = list(filter(lambda x: x is not None, filtered))
 
             if filtered:
                 dataset.loc[index, 'match_filtered'] = 'y'
@@ -87,7 +80,8 @@ if accuracy_assessment:
                 dataset.loc[index, 'match_filtered'] = 'n'
 
         # Saves results to a .csv file
-        dataset.to_csv(str(number) + '_results.csv')
+        filename = key[:-4]
+        dataset.to_csv(f'{filename}_results.csv')
 
 
         # Creates accuracy reports for each data set
@@ -138,7 +132,7 @@ if accuracy_assessment:
             df.loc['unfiltered_commission_error', 'reference_y'] = filtered_n_reference_y/filtered_n_total
         
         # Saves data sets as .csv file
-        df.to_csv(str(number) + '_accuracyreport.csv')
-        number += 1
+        df.to_csv(f'{filename}_accuracyreport.csv')
+        
 
 

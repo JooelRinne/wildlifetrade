@@ -1,16 +1,10 @@
-import numpy as np
-from numpy.core.numeric import NaN
 import pandas as pd
-import re
-import sqlite3
-from sqlalchemy import create_engine
-
 
 # Choose which functions the script will run by writing True or False after the variable
 # Data selection randomly sleects the data entries from raw data to data sets 
 # sample_size determines how many data entries are chosen per data set
-data_selection = True
-sample_size = 100
+data_selection = False
+sample_size = 1
 
 # Accuracy assessments compares a reviewed data sets to data processed by scripts 
 accuracy_assessment = True
@@ -18,13 +12,20 @@ accuracy_assessment = True
 if data_selection:
     # Loads data
     raw_data = pd.read_csv('matches.csv')
+    
+    raw_data['Species_r'] = [''] * raw_data.shape[0]
+    raw_data['Quantity_r'] = [''] * raw_data.shape[0]
+    raw_data['Price_r'] = [''] * raw_data.shape[0]
+    raw_data['Currency_r'] = [''] * raw_data.shape[0]
+    raw_data['Intent_r'] = [''] * raw_data.shape[0]
+    raw_data['Location_r'] = [''] * raw_data.shape[0]
 
     # Selects training and validation data sets
     processing_trainingdata = raw_data.sample(n = sample_size)
     processing_testdata = raw_data.sample(n = sample_size)
 
     # Saves created data sets as .csv files
-    processing_trainingdata .to_csv('processing_validationdata .csv')
+    processing_trainingdata.to_csv('processing_trainingdata.csv')
     processing_testdata.to_csv('processing_testdata.csv')
 
 # Calculates overall accuracies for each data field for processed data from training data and test data sets
@@ -40,6 +41,7 @@ if accuracy_assessment:
 
     # Select the training or test data sets used as reference 
     reference_datasets = [trainingdata_r, testdata_r]
+    datasets_names = ['trainingdata', 'testdata']
 
 
     for dataset in reference_datasets:
@@ -54,9 +56,8 @@ if accuracy_assessment:
     reviewed_cells = ['Species_r', 'Quantity_r', 'Price_r', 'Currency_r', 'Intent_r']
     comparison_cells = ['Species_correct', 'Quantity_correct', 'Price_correct', 'Currency_correct', 'Intent_correct']
 
-    number = 1
     original_datarow = 0
-    for dataset in reference_datasets:
+    for dataset, name in zip(reference_datasets, datasets_names):
         for index, row in dataset.iterrows():
             for i, r in processed_df.iterrows():
                 if str(float(row['original_datarow'])) == str(float(r['original_datarow'])):
@@ -71,11 +72,11 @@ if accuracy_assessment:
                             else:
                                 dataset.loc[index, cell + '_correct'] = 'n'
 
-                        if (str(row['Location_r']) == 'nan' and str(r['location_spacy']) == '[]'):
+                        if (str(row['Location_r']) == 'nan' and str(r['Country']) == '[]'):
                             dataset.loc[index, 'Location_correct'] = ''
-                        elif (str(row['Location_r']) == 'NO' and str(r['location_spacy']) == '[]'):
+                        elif (str(row['Location_r']) == 'NO' and str(r['Country']) == '[]'):
                             dataset.loc[index, 'Location_correct'] = ''                                                            
-                        elif str(row['Location_r']) in str(r['location_spacy']):
+                        elif str(row['Location_r']) in str(r['Country']):
                             dataset.loc[index, 'Location_correct'] = 'y'
                         else:
                             dataset.loc[index, 'Location_correct'] = 'n'
@@ -83,7 +84,7 @@ if accuracy_assessment:
                         original_datarow = r['original_datarow']
 
 
-        dataset.to_csv(str(number) + '_processingresults.csv')
+        dataset.to_csv(f'{name}__processingresults.csv')
 
         df = pd.DataFrame(index=[
             'Species_y',
@@ -202,23 +203,40 @@ if accuracy_assessment:
         df.loc['Intent_n', 'total'] = intent_n
 
         species_total = species_y + species_n
-        df.loc['Accuracy_species', 'total'] = species_y / species_total
+        if species_total != 0:
+            df.loc['Accuracy_species', 'total'] = species_y / species_total
+        else:
+            df.loc['Accuracy_species', 'total'] = 'NaN'
 
         quantity_total = quantity_y + quantity_n
-        df.loc['Accuracy_quantity', 'total'] = quantity_y / quantity_total
+        if quantity_total  != 0:
+            df.loc['Accuracy_quantity', 'total'] = quantity_y / quantity_total
+        else: 
+            df.loc['Accuracy_quantity', 'total'] = 'NaN'
 
         price_total = price_y + price_n
-        df.loc['Accuracy_price', 'total'] = price_y / price_total        
+        if price_total != 0:
+            df.loc['Accuracy_price', 'total'] = price_y / price_total        
+        else:
+            df.loc['Accuracy_price', 'total'] = 'NaN'
 
         currency_total = currency_y + currency_n
-        df.loc['Accuracy_currency', 'total'] = currency_y / currency_total
+        if currency_total != 0:
+            df.loc['Accuracy_currency', 'total'] = currency_y / currency_total
+        else:
+            df.loc['Accuracy_currency', 'total'] = 'NaN'
 
         location_total = location_y + location_n
-        df.loc['Accuracy_location', 'total'] = location_y / location_total
+        if location_total != 0:
+            df.loc['Accuracy_location', 'total'] = location_y / location_total
+        else:
+            df.loc['Accuracy_location', 'total'] = 'NaN'
 
         intent_total = intent_y + intent_n
-        df.loc['Accuracy_intent', 'total'] = intent_y / intent_total
-
+        if intent_total != 0:
+            df.loc['Accuracy_intent', 'total'] = intent_y / intent_total
+        else:
+            df.loc['Accuracy_intent', 'total'] = 'NaN'
 
         total_y = species_y + quantity_y + price_y + currency_y + location_y + intent_y
         df.loc['Total_y', 'total'] = total_y
@@ -227,7 +245,10 @@ if accuracy_assessment:
         df.loc['Total_n', 'total'] = total_n
 
         total = total_y + total_n
-        df.loc['Overall_accuracy_all', 'total'] = total_y / total
 
-        df.to_csv(str(number) + '_processingaccuracyreport.csv')
-        number += 1
+        if total != 0:
+            df.loc['Overall_accuracy_all', 'total'] = total_y / total
+        else:
+            df.loc['Overall_accuracy_all', 'total'] = 'NaN'
+
+        df.to_csv(f'{name}_processingaccuracyreport.csv')
