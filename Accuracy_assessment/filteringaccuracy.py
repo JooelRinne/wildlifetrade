@@ -5,10 +5,10 @@ import glob
 
 # Choose which functions the script will run by writing True or False after the variable
 # Data selection randomly sleects the data entries from raw data to data sets 
-data_selection = False
+data_selection = True
 
 # Accuracy assessments compares a reviewed data sets to data processed by scripts 
-accuracy_assessment = True
+accuracy_assessment = False
 
 # Name of the database and the data table
 db = 'wildlifetrade.db'
