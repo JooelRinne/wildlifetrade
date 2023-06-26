@@ -1,5 +1,5 @@
 # Online wildlife trade data collection and processing tool
-Tool for scraping websites trading wildlife species and processing the scraped data.
+Tool for scraping wildlife trade websites and processing data.
 
 
 
