@@ -45,7 +45,7 @@ https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoe
 
 To be noted:
 - You can change the name of the SQLite database and the tables of the database in the "pipelines.py" file. There you can also choose if a new table is created once you run the crawler. At first run this variable has to be True. Note that the database and table names must correspond to the names in the script "Data_processing/matches.py" used during the Data processing phase.
-- New website can be scraped by removing the previous websites config file from the "config" folder and replacing it with the config file of the next website.
+- A new website can be scraped by removing the previous websites config file from the "config" folder and replacing it with the config file of the next website.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
