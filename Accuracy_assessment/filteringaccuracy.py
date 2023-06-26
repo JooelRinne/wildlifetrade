@@ -15,7 +15,7 @@ db = 'wildlifetrade.db'
 tb = 'reptiles_tb'
 
 # Sample size determines how many data entries are chosen per data set
-sample_size = 1
+sample_size = 100
 
 if data_selection:
     # Loads data
