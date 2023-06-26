@@ -3,11 +3,11 @@ import pandas as pd
 # Choose which functions the script will run by writing True or False after the variable
 # Data selection randomly sleects the data entries from raw data to data sets 
 # sample_size determines how many data entries are chosen per data set
-data_selection = False
-sample_size = 1
+data_selection = True
+sample_size = 100
 
 # Accuracy assessments compares a reviewed data sets to data processed by scripts 
-accuracy_assessment = True
+accuracy_assessment = False
 
 if data_selection:
     # Loads data
